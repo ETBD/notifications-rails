@@ -8,7 +8,7 @@ module NotificationSettings
 
     included do
       include NotificationSettings::Settings
-      include NotificationSettings::Status
+      include NotificationSettings::NotificationStatus
     end
   end
 end

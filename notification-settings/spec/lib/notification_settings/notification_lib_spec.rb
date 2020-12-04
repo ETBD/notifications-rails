@@ -96,7 +96,7 @@ RSpec.describe NotificationSettings::NotificationLib do
     end
   end
 
-  describe 'status' do
+  describe 'notification_status' do
     describe 'online' do
       pending
     end
@@ -109,7 +109,7 @@ RSpec.describe NotificationSettings::NotificationLib do
       pending
     end
 
-    describe 'custom status' do
+    describe 'custom notification_status' do
       # rubocop:disable RSpec/NestedGroups
       describe 'in do_not_notify_statuses' do
         it 'does not notify'

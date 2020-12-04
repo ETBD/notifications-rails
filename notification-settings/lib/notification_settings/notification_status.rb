@@ -3,19 +3,19 @@
 require 'active_support'
 
 module NotificationSettings
-  module Status
+  module NotificationStatus
     extend ActiveSupport::Concern
 
     included do
-      validates :status,
-                inclusion: { in: NotificationSettings.configuration.statuses }
+      validates :notification_status,
+                inclusion: { in: NotificationSettings.configuration.notification_statuses }
 
-      include NotificationSettings::Status::InstanceMethods
+      include NotificationSettings::NotificationStatus::InstanceMethods
     end
 
     module InstanceMethods
-      def status
-        self[:status] || default_status
+      def notification_status
+        self[:notification_status] || default_status
       end
 
       private

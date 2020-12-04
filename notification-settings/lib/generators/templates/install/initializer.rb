@@ -9,11 +9,11 @@ NotificationSettings.configure do |config|
 
   ### STATUS ###
 
-  # Time duration without activity after which the status defaults to `'idle'`.
+  # Time duration without activity after which the notification_status defaults to `'idle'`.
   # Takes a time.
   # config.idle_after = 10.minutes
 
-  # Time duration without activity after which the status defaults to
+  # Time duration without activity after which the notification_status defaults to
   # `'offline'`. Takes a time.
   # config.offline_after = 3.hours
 
@@ -22,7 +22,7 @@ NotificationSettings.configure do |config|
   # config.last_seen = :last_seen
 
   # Array of all possible statuses. Takes an array of strings.
-  # config.statuses = [
+  # config.notification_statuses = [
   #   'online',
   #   'idle',
   #   'offline',

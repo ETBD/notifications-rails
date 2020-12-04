@@ -16,9 +16,9 @@ Integrates with your authentication solution to craft a personalized user notifi
     * [Pusher-specific settings](#pusher-specific-settings)
     * [Updating settings](#updating-settings)
   * [Subscriptions](#subscriptions)
-  * [Status](#status)
+  * [NotificationStatus](#notification_status)
 * [Configuration](#configuration)
-  * [Status](#status)
+  * [NotificationStatus](#notification_status)
 * [To Do](#to-do)
 * [Contributing](#contributing)
   * [Semantic versioning](#semantic-versioning)
@@ -69,7 +69,7 @@ end
 add_column :users, :settings, :text
 
 # A string that describes a notification-relevant state of a notification target.
-add_column :users, :status, :string
+add_column :users, :notification_status, :string
 ```
 
 ### Categories
@@ -211,14 +211,14 @@ Group.first.notify_subscribers(dependents: nil)
 Group.first.notify_subscribers(dependents: Group.first.chats + Group.first.talks)
 ```
 
-You can customize settings & status for a single subscription just as you would for a notification target:
+You can customize settings & notification_status for a single subscription just as you would for a notification target:
 
 ```ruby
 user = User.first
 subscription = user.notification_subscriptions.first
 
 subscription.settings.enabled = false
-subscription.status = 'online'
+subscription.notification_status = 'online'
 subscription.save
 ```
 
@@ -240,21 +240,21 @@ subscribable.notification_subscribers
 has_many :subscribed_users, through: :notification_subscribers, source: :subscriber, source_type: 'User'
 ```
 
-### Status
+### NotificationStatus
 
-NotificationSettings comes with a handy feature called Status. The status of a record can temporarily disable the ability to create notifications for or to push notifications of a target.
+NotificationSettings comes with a handy feature called NotificationStatus. The notification_status of a record can temporarily disable the ability to create notifications for or to push notifications of a target.
 
-This is how to define a status:
+This is how to define a notification_status:
 
 ```ruby
-User.first.update(status: 'do not disturb')
+User.first.update(notification_status: 'do not disturb')
 ```
 
-**Note:** You can set `status` to any string you like.
+**Note:** You can set `notification_status` to any string you like.
 
-`status` has three possible values that are being used as defaults. Normally it defaults to `'online'`. If the `last_seen` [configuration](#configuration) option has been set, it can also default to `'idle'` or `'offline'` depending on the `idle_after` and `offline_after` [configuration](#configuration) options.
+`notification_status` has three possible values that are being used as defaults. Normally it defaults to `'online'`. If the `last_seen` [configuration](#configuration) option has been set, it can also default to `'idle'` or `'offline'` depending on the `idle_after` and `offline_after` [configuration](#configuration) options.
 
-If you have set `status` to a custom value, you can get back to using the defaults by setting it back to `nil`.
+If you have set `notification_status` to a custom value, you can get back to using the defaults by setting it back to `nil`.
 
 You can define statuses that prevent creating new notifications for a target and statuses that just prevent delivering them:
 
@@ -281,11 +281,11 @@ end
 
 **`default_category`** Choose your default notification category. Takes a symbol. Defaults to `:notification`.
 
-### Status
+### NotificationStatus
 
-**`idle_after`** Time duration without activity after which the status defaults to `'idle'`. Takes a time. Defaults to `10.minutes`.
+**`idle_after`** Time duration without activity after which the notification_status defaults to `'idle'`. Takes a time. Defaults to `10.minutes`.
 
-**`offline_after`** Time duration without activity after which the status defaults to `'offline'`. Takes a time. Defaults to `3.hours`.
+**`offline_after`** Time duration without activity after which the notification_status defaults to `'offline'`. Takes a time. Defaults to `3.hours`.
 
 **`last_seen`** Stringified datetime attribute name of `object` that defines the time of the last activity. Takes a symbol. Defaults to `:last_seen`.
 
