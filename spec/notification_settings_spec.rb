@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe NotificationSettings do
   let(:notification) { build_stubbed :notification, category: :my_category }
-  let(:settings)     { notification.target.settings }
+  let(:settings)     { notification.target.notification_settings }
 
   describe 'global pusher settings' do
     it 'is enabled by default' do

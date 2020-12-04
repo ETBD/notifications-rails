@@ -57,8 +57,8 @@ module NotificationSettings
       end
 
       def settings_allow_creation?
-        target.settings.fetch(:enabled, true) &&
-          (subscription.nil? || subscription.settings.fetch(:enabled, true))
+        target.notification_settings.fetch(:enabled, true) &&
+          (subscription.nil? || subscription.notification_settings.fetch(:enabled, true))
       end
 
       def category_settings_allow_creation?

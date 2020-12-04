@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
 
       t.string :notification_status
-      t.string :settings
+      t.string :notification_settings
     end
   end
 end

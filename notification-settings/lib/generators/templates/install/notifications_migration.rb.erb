@@ -5,7 +5,7 @@ class NotificationSettingsMigration < ActiveRecord::Migration<%= migration_versi
     add_column :notifications, :subscription_id, :bigint, index: true
     add_column :notifications, :category, :string, index: true
 
-    create_table :notification_settings_subscriptions do |t|
+    create_table :notification_notification_settings_subscriptions do |t|
       t.references :subscriber,
                    polymorphic: true,
                    index: {
@@ -17,7 +17,7 @@ class NotificationSettingsMigration < ActiveRecord::Migration<%= migration_versi
                      name: 'idx_subscriptions_subscribable_type_subscribable_id'
                    }
 
-      t.text :settings
+      t.text :notification_settings
 
       t.timestamps
     end

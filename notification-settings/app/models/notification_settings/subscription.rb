@@ -2,7 +2,7 @@
 
 module NotificationSettings
   class Subscription < ActiveRecord::Base
-    self.table_name = 'notification_settings_subscriptions'
+    self.table_name = 'notification_notification_settings_subscriptions'
 
     include NotificationSettings::Settings
 

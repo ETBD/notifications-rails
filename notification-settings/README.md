@@ -66,7 +66,7 @@ end
 
 ```ruby
 # A Hashie::Mash object that stores all the settings of a notification target.
-add_column :users, :settings, :text
+add_column :users, :notification_settings, :text
 
 # A string that describes a notification-relevant state of a notification target.
 add_column :users, :notification_status, :string
@@ -97,7 +97,7 @@ Notification.follow_category
 You can completely disable notifications for a given notification target:
 
 ```ruby
-settings = User.first.settings
+settings = User.first.notification_settings
 
 settings.enabled = false
 ```
@@ -135,10 +135,10 @@ The preferences form has just one attribute: `enabled`. It can be used to update
 ```ruby
 user = User.first
 
-form = NotificationSettings::PreferencesForm.new(enabled: user.settings.enabled)
+form = NotificationSettings::PreferencesForm.new(enabled: user.notification_settings.enabled)
 form.valid?
 
-user.settings.enabled = form.enabled
+user.notification_settings.enabled = form.enabled
 ```
 
 ##### CategoryPreferencesForm
@@ -148,11 +148,11 @@ The category preferences form has one attribute per category. It can be used to 
 ```ruby
 user = User.first
 
-form = NotificationSettings::CategoryPreferencesForm.new(user.settings.categories_.to_h)
+form = NotificationSettings::CategoryPreferencesForm.new(user.notification_settings.categories_.to_h)
 form.valid?
 
 form.changed_attributes.each do |category|
-  user.settings.categories!.send(category, form.send(category))
+  user.notification_settings.categories!.send(category, form.send(category))
 end
 ```
 
